@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    /* promise sẽ có 3 trạng thái
+        1. Đang chờ(loadding) - Pennding
+        2. xử lí thành công - fulfilled
+        3. Xử lí thất bại - rejected
+        
+       Và promise có 3 loại kết quả
+        1. Kq ban đầu luôn là - undefined
+        2. kq khi resolve sẽ trả về - value
+        3. kq khi reject sẽ trả về - error
+    */
+      var promise = new Promise( (resolve, reject) => {
+        // resolve()
+        reject()
+      });
+
+      promise
+        .then(function () {
+          console.log("Successfully!");
+        })
+        .catch(function () {
+          console.log("Failure!");
+        })
+        .finally(function () {
+          console.log("Done!");
+        });
+    </script>
+  </body>
+</html>

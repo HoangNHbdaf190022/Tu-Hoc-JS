@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+
+    <h1>Việc dùng try catch đã quá quen thuộc với chúng ta rồi nên chỉ demo sương sương như vậy thôi hỉ</h1>
+    <script>
+    
+    let us = {name: 'Hoang', age: 20, add: 'nghe an'}
+    try{
+        let use = JSON.parse(us)
+        console.log(use.name)
+    }catch (err) {
+        console.log("doesn't execute"); //doesn't work
+    }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: aquamarine; text-align: center;">
+    <p style="font-size: 50px; margin-bottom: 50px;">Advance function</p>
+
+    <!-- Khi chúng ta chỉ truyền tham số a và b, nhưng khi nhập vào là 1 đóng tham số
+    Nó sẽ không lỗi vì nó chỉ lấy đúng 2 thằng đầu tức a & b
+    Vậy đống kia sẽ vứt đi đâu? -->
+
+    <script>
+
+        let para = function(a, b, ...rest){
+            console.log(a +' '+ b)
+
+        //kết quả là Nguyễn Hoàng và đống kia được đưa vào mảng rest, chúng ta thử in ra xem
+        //Lưu ý rằng: The rest parameters luôn phải nằm cuối cùng, ok
+        console.log(rest.length) //chiều dài mảng resr là 3
+        console.log(rest[0])     // alo
+        console.log(rest[1])     // hello
+        console.log(rest[2])     // bye
+        }
+        para('Nguyễn','Hoàng','alo','hello','bye',)
+        
+        //========== The “arguments” variable =============//
+        //Ngoài ra còn có 1 loại mảng đặc biệt nữa, đó là biến arguments, nó chứa hết các đối số bằng index của chúng
+        //lưu ý: arrow function không có arguments
+        let showName = function(){
+            console.log(arguments.length)
+            console.log(arguments[0])
+            console.log(arguments[1])
+        //giải thích: nó như kiểu vòng lặp for...of
+        //for(let i of arguments) -> console.log(i);
+        }
+        //can you see above showName function has 3 console.log & below has 2 showName, right?
+        // The first showName() will return length = 2, xin & chào
+        // The second showName() will return length = 1, các & undefined => because index 1 can not find
+        console.log("==== Lượt 1 ====")
+        showName('xin', 'chào') 
+        console.log("==== Lượt 2 ====")
+        showName('các')
+             
+    </script>
+</body>
+</html>

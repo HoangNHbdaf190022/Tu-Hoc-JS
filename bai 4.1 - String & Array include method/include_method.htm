@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>String include method và Array include method</h1>
+    <h3>Tình yêu của include chỉ dành cho 2 anh: String và Array</h3>
+        <p><b>Ví dụ: </b>console.log(String.prototype.includes) hoặc <br>
+            console.log(Array.prototype.includes). Còn mấy cái khác thì không được
+        </p>
+
+    <script>
+        //==== chuỗi ====//
+        var a = 'ban hoang dep trai'
+        console.log(a.includes('ban')) //nếu có chứa 'ban' thì trả về true
+        console.log(a.includes('kkk')) //còn không trả về false
+        console.log(a.includes('ban', 0)) //chúng ta còn có thể dùng vị trí để kiểm tra xem nó tồn tại hay không -> true
+        console.log(a.includes('ban', 1)) //từ index 1 trở đi không có từ nào là 'ban' cả nên false
+
+        console.log('Array include')
+
+        //==== mảng ====//
+        var b = ['PHP', 'JS', 'C#', 'Java','Python', 'C#']
+        console.log(b.includes('JS')) //Có js trong mảng -> true
+        console.log(b.includes('JS', 1)) //vì js nằm ngày ở index 1 nên -> true
+        console.log(b.includes('JS', 2)) // tất nhiên là false rồi =))
+        console.log(b.includes('C#', 3)) // -> true vì ở đây có 2 C#: cái đầu index 2, cái 2 index 5
+                                         // nếu tính từ index 3 thì vẫn còn 1 cái C# ở index 5 mà , right?
+        /* Để số âm vẫn ăn nhé */
+
+    </script>
+</body>
+</html>

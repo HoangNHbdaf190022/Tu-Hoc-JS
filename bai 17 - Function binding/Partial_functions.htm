@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: aquamarine; text-align: center">
+    <p style="font-size: 50px; margin-bottom: 50px">Partial functions</p>
+    <p>Chúng ta không chỉ dùng "this" để bind mà còn có thể dùng arguments
+    </p>
+    <p>Nó ít khi được dùng, nhưng đôi lúc nó lại rất chi là ok :v</p>
+    <pre style="font-family:'Times New Roman', Times, serif">Lợi ích là chúng ta có thể tạo một hàm độc lập với tên có thể đọc được (gấp đôi, gấp ba). Chúng ta có thể sử dụng nó và không phải cung cấp đối số đầu tiên vì nó đã được cố định với ràng buộc.
+    Trong các trường hợp khác, ứng dụng một phần sẽ hữu ích khi chúng ta có một hàm rất chung chung và muốn một biến thể nó</pre>
+    
+    <script>
+    
+    function multi(a, b) {
+        return a * b;
+    }
+    console.log(multi(2, 3)) //-> 6
+
+    // Let’s use bind to create a function double on its base/ Bh chúng ta dùng bind để tạo hàm double dựa trên hàm phía trên nhá
+
+    let double = multi.bind(null, 2) //tạo 1 hàm mới chuyển lệnh tới multi, cho null là context và 3 là arguments
+    console.log(double(3)) // = multi(3, 3) = 4
+    console.log(double(4)) // = multi(3, 4) = 8
+    console.log(double(5)) // = multi(3, 5) = 10
+    /* - Đó được gọi là ứng dụng chức năng từng phần - chúng ta tạo một chức năng mới bằng cách sửa một số tham số của chức năng hiện có. 
+    Ở đây chúng ta sẽ không dùng "this" nhưng bind lại yêu cầu nên chúng ta sẽ truyền 1 thứ gì đó như null chẳng hạn */
+
+    </script>
+</body>
+</html>

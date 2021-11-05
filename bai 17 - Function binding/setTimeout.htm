@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: aquamarine; text-align: center">
+    <p style="font-size: 50px; margin-bottom: 50px">Function binding</p>
+    <p>
+      Khi truyền các object method bằng callback, thí dụ như <b>setTimeout</b>
+    </p>
+    <p>nó sẽ xảy ra 1 vấn đề là <i>"this"</i> bị mất :3</p>
+
+    <script>
+      //Cho 1 object method  
+      let user = {
+        name: "Hoang",
+        toString() {
+          console.log(`Xin chao ${this.name}`); //-> Xin chao
+        },
+      };
+      //Đây là 1 cách làm không hợp lí khi dùng this, mà nếu muốn in ra được thì thay this = user
+      setTimeout(user.toString, 1000);
+
+      //Cách 1: Sử dụng wrapping function
+      setTimeout(function () {
+        user.toString();
+      }, 1000);
+
+      //Cách 2: func.bind(), say.bind() method
+      let users = { firstName: "Huy" };
+
+      function fun() {
+          console.log(this.firstName); 
+        }
+      let funcUser = fun.bind(users) //được coi như là biến thể ràng buộc(bound variant) của fun()
+      funcUser(); // chó Huy =))
+
+    
+    //   Convenience method: bindAll
+    for (let key in users) {
+    if (typeof users[key] == 'function') {
+    users[key] = users[key].bind(users);
+        }
+    }
+    
+    </script>
+  </body>
+</html>

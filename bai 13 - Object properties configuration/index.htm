@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        writable – nếu true, giá trị có thể thay đổi, còn không thì chỉ đọc (read-only )
+        enumerable – nếu true, thì thuộc tính được liệt kê khi lặp, còn không thì không được liệt kê
+        configurable – nếu true, thuộc tính có thể bị xóa, writable và enumerable có thể bị thay đổi, còn không thì không thể
++ Một thuộc tính sẽ có đầy đủ 3 cờ, người ta gọi 3 cờ của thuộc tính là bộ mô tả thuộc tính (property descriptor)
++ Phương thức Object.getOwnPropertyDescriptor cho phép chúng ta lấy đầy đủ thông tin về thuộc tính
++ Để thay đổi cờ, chúng ta có thể sử dụng Object.defineProperty
++ descriptor : Một object miêu tả các thuộc tính, nếu không cung cấp thì mặc định là false
+        - Non-writable: để Non-writable không bị thay đổi thì chuyển writable sang false
+        - Non-enumerable: dùng for in để liệt kê, trong cái này phải có thêm toString trong object
+                          để Non-enumerable không liệt kê được thì chuyển enumerable sang false
+        - Non-configurable: để Non-configurable không bị thay đổi thì chuyển configurable sang false
+                            khi set thuộc tính là non-configurable: false thì chúng ta không thể thay đổi lại bằng defineProperty
+
+
+-->
+
+    <h1>Nothing to configure</h1>
+
+    <!-- <script src="index.js"></script> -->
+    <script src="index1.js"></script>
+</body>
+</html>

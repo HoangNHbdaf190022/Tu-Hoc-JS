@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reduce</title>
+</head>
+<style> h2 { font-weight: normal; } </style>
+
+<body>
+    <h1>Mục đích của reduce()</h1>
+    <h2>
+        - Trong bài này mình sẽ làm 3 kiểu từ lặp thường cho tới lặp dùng reduce, từ function thường cho tới arrow function <br>
+        - Nó được sinh ra để quy đổi tất cả thành 1 kết quả duy nhất, ví dụ như
+        trong 1 mảng đó có tất cả bao nhiêu phần tử, hay là tổng số tiền của các
+        môn dưới đây
+    </h2>
+    <script>
+        var Subject = [
+            { id: 1, name: "Toan", price: 100 },
+            { id: 2, name: "Van", price: 200 },
+            { id: 3, name: "Anh", price: 150 },
+            { id: 4, name: "Tin", price: 100 },
+            { id: 5, name: "Dia Li", price: 250 }
+        ];
+
+        // bản chất chúng cũng chỉ là những vòng lặp, được sinh ra để viết ngắn hơn thôi
+        //==========  Vòng lặp thường  ============//
+        let totalPrice = 0; // biến lưu trữ
+        for(let money of Subject){
+            totalPrice += money.price
+        }
+        console.log(`Lặp thường: ${totalPrice}`) //800
+
+        //=============  reduce() dùng express function  ========//
+        let tongSoTien = Subject.reduce(function(luuTru, cost){
+            return luuTru + cost.price
+        }, 0)
+        console.log(tongSoTien) //800
+
+        //=========== reduce() dùng arrow function  ===========//
+        // let tong = Subject.reduce((a, b) => 
+        // a + b.price, 0)
+        // console.log(tong) //800
+        let tong = Subject.reduce((a, b) => a + b.price, 0)
+        console.log(tong)
+
+
+    </script>
+</body>
+</html>

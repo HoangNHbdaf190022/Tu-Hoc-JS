@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: aquamarine; text-align: center">
+    <p style="font-size: 50px; margin-bottom: 50px">Advance function</p>
+
+    <!-- Chúng ta trước h chỉ lấy  mảng từ 1 list parameters, hôm nay ta chơi ngược lại -->
+    <script>
+      //ví dụ: trả về thằng lớn nhất
+      console.log("So lon nhat: " + Math.max(3, 9, 5, 2));
+      //đó là consolelog thẳng, bh chúng mình thử dùng mảng để gọi nó xem sao
+      let arr = [3, 6, 2, 7];
+      console.log(Math.max(arr));
+      //kết quả trả về là NaN - vì nso chỉ cho phép 1 list arguments chứ không cho mảng đơn như này
+      //để giải quyết, chúng ta cũng chơi ...arr - nhìn giống như rest parameter nhưng nó hoạt động ngược lại
+      //khi được gọi thằng ...arr sẽ mở rộng cái vòng lặp bên trong list arguments
+
+      //làm lại bài trên nhá, thêm chữ s vào cho đỡ trùng
+      let arrs = [3, 6, 2, 7];
+      console.log("max = " + Math.max(...arrs)); //-> 7
+
+      //ngoài ra nó còn lặp được rất nhiều mảng và tìm ra thằng lớn nhất trong all mảng đó
+      let arr1 = [2, 6, 1];
+      let arr2 = [7, 3, 4];
+      let arr3 = [2, 8, 9];
+      console.log("max in 3 arrays = " + Math.max(...arr1, ...arr2, ...arr3)); //-> 9
+
+      //thậm chí là kết hợp cả các value bình thường
+      let ar1 = [8, 3, 4];
+      let ar2 = [7, 5, 4];
+      console.log("max = " + Math.max(2, ...ar1, ...ar2, 10)); //-> 10 to nhứt
+
+      // Nếu không Math.max thì no Merge luôn tất cả mảng và value
+      let aray1 = [8, 3, 4];
+      let aray2 = [7, 5, 4];
+      console.log(2, ...aray1, ...aray2, 10); // ->2 8 3 4 7 5 4 10
+
+    </script>
+  </body>
+</html>

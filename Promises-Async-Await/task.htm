@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+  </head>
+<style>a{text-decoration: none; color:red} p, a{font-size: 30px;}</style>
+  <body>
+    <p>link bài tập <a href="https://www.codewars.com/kata/5a353a478f27f244a1000076/train/javascript">tại đây</a></p>
+    <p>Tham khảo cách làm<a href="https://codesandbox.io/s/hfzi0?file=/src/index.js"> tại đây</a></p>
+    <p>Tham khảo solution<a href="https://github.com/Automedon/Codewars/tree/master/6-kyu-part1"> tại đây</a></p>
+
+    <script>
+      function sayJoke(apiUrl,jokeId) {
+        return fetch(apiUrl)                  //trả về apiUrl bằng fetch
+        .then((response) => response.json())  // promise json
+        .then((json) => {                     //vòng lặp
+            for(let joke of json.jokes){      //cho biến joke chạy qua các jokes để lọc id
+              if(joke.id === jokeId){         //id phải tuyệt đối bằng jokeId
+                  return{
+                    saySetup: () => joke.saySetup,
+                    sayPunchLine: () => joke.sayPunchLine,
+                  }
+              }
+            }
+            throw new Error(`No jokes found id: ${jokeId}`) //không có id nào trùng thì báo không tìm thấy id
+        })
+        .catch((error) => new Error(`No jokes at url: ${url}`))
+      }
+    </script>
+  </body>
+</html>

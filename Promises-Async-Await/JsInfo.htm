@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Promise</h1>
+
+    <script>
+      var promise = new Promise( (resolve, reject) =>{
+        setTimeout(() => resolve("done!"), 1000),
+          setTimeout(() => reject("fail!"), 1000);
+      });
+
+        promise.then((a) => console.log(a)),
+        promise.catch((e) => console.log(e)),
+        promise.finally(() => console.log("Ok"));
+
+      //promise.all để cho 2 cái promise chạy song song nhau
+      var promise1 = new Promise(function (resolve) {
+        setTimeout(() => resolve([1, 2]), 1000);
+      });
+      var promise2 = new Promise(function (reject) {
+        setTimeout(() => reject([3, 4]), 3000);
+      });
+      //dùng concat để nối chúng lại với nhau, đây là es6
+      Promise.all([promise1, promise2]).then(function ([alo1, alo2]) {
+        console.log(alo1.concat(alo2));
+      });
+
+      //task 1
+      function sayJoke(apiUrl, jokeId) {
+        return fetch(apiUrl)
+          .then((response) => response.json())
+          .then((json) => {
+            for (let joke of json.jokes) {
+              if (joke.id === jokeId) {
+                return {
+                  saySetup: () => joke.setup,
+                  sayPunchLine: () => joke.punchLine,
+                };
+              }
+            }
+            throw new Error(`No jokes found id: ${jokeId}`);
+          })
+          .catch((error) => {
+            throw error instanceof TypeError
+              ? new Error(`No jokes at url: ${apiUrl}`)
+              : error;
+          });
+      }
+    </script>
+  </body>
+</html>
+

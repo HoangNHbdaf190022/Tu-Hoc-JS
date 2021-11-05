@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //promise xử lí callback hell như nào
+
+        var promise = new Promise(
+            function(resolve, reject){
+                resolve()
+            }
+        )
+        promise
+        .then(function(){
+            return 1
+        })
+        .then(function(data){
+            console.log(data);
+            return 2 
+        })
+        .then(function(data){
+            console.log(data);
+            return 3 
+        })
+        .then(function(data){
+            console.log(data);
+            return 4
+        })
+        .catch(function error(){ console.log('Lỗi rồi')})
+        .finally(function final(){console.log('Done')})
+    </script>
+</body>
+</html>

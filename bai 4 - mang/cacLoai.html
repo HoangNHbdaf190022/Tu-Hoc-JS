@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Every</title>
+</head>
+<style> h2{font-weight: normal;} span{font-weight: normal;}</style>
+
+<body style="background-color:khaki ">
+    <h1>Mục đích của every()</h1>
+    <h2>Kiểm tra tất cả các phần tử phải thỏa mãn 1 điều kiện. Ví dụ, bạn phải làm hết task, đi làm không nghỉ thì công ty mới tính đủ lương cho bạn :3</h2>
+    <h1>Mục đích của some()</h1>
+    <h2>Tính năng như every nhưng bị ngược, some() cũng check === nhưng chỉ cần 1 thằng đầu tiên thỏa mãn đk thì duyệt luôn, mấy cái sau không quan trọng </h2>
+    <h1>Mục đích của find()</h1>
+    <h2>Như trong linQ của C#, find() nó sẽ tìm ra đúng cái tên hoặc id, tất tần tật đúng với những gì mình yêu cầu - nhưng nó chỉ trả về đúng 1 đối tượng mà thôi</h2>
+    <h1>Mục đích của filter()</h1>
+    <h2>Nó được sinh ra để đấm bỏ mẹ thằng find(), nếu như trong 1 mảng có nhiều cái giống nhau nhưng find() chỉ lấy duy nhất cái đầu còn filter() tìm được bao nhiêu lấy bấy nhiêu</h2>
+    <h3>Kết luận: <span>Luôn luôn phải có express function (còn muốn arrow function thì có ví dụ ở dưới luôn), truyền vào index và value, trong cấu trúc thì phải có return, mà đã return thì phải so sánh ===.</span></h3>
+
+    <script>
+        var course = [
+            { id: 1, name: 'Anh', cost: 120},
+            { id: 2, name: 'Van', cost: 110},
+            { id: 3, name: 'Toan', cost: 150},
+            { id: 4, name: 'Anh', cost: 100},
+        ]
+        
+        //==========  for each  ===========//
+        var display = course.forEach(function(value, index){
+            console.log(index, value)
+        })
+
+        //==========  every()  ============//
+        var display1 = course.every(function(value, index){
+            console.log(index) //it only run 1 time cause input condition false -> = 0
+            return value.name === 'An' //all of course name must be 'An'
+        })
+        console.log(display1); //false
+
+        //==========  some()  =============//
+        var display2 = course.some(function(value, index){
+            return value.cost === 110;
+        })
+        console.log(display2) //true
+
+        //=========  find()  ==============//
+        var display3 = course.find(function(value, index){
+            return value.name === 'Toan'
+        })
+        console.log(display3) //{id: 1, name: 'Toan', cost: 120}
+
+        //=========  filter()  ==============//
+        var display4 = course.filter(function(value, index){
+            return value.name === 'Anh'
+        })
+        console.log(display4) // 0: {id: 1, name: 'Anh', cost: 120}
+                              // 1: {id: 4, name: 'Anh', cost: 100}
+
+        //===========  arrow function  =========//
+        let filter = course.filter((value, index)=>{
+            return value.name === 'Anh'
+        })
+        console.log(filter)
+
+    </script>
+</body>
+</html>

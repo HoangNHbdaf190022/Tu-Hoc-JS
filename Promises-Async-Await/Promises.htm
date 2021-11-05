@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body style="background-color: aquamarine;">
+    <h1 style="text-align: center; font-size: 50pt;">Promises</h1>
+    <caption>Promise: Nó được sinh ra để xử lí các thao tác bất đồng bộ <br>
+    Trước khi sử dụng tới promise thì chúng ta thường sử dụng callback nhưng sẽ gặp phải trường hợp là callback hell vừa gây lãng phí bộ nhớ vừa khó nhìn khó hiểu <br>
+    Nên Promise được sinh ra trong phiên bản ES6 để khắc phục nhược điểm đó <br>
+    Để bắt đầu thì chúng ta sẽ bắt đầu với từ khóa new Promise() và trong constructor ta sẽ truyền 1 executor function có 2 tham số đó là  resolve và reject. <br>
+    Ta sẽ gọi resolve khi xử lí thành công và gọi reject khi xử lí thất bại <br>
+    Khi chúng ta sử dụng đối tượng của Promise() tạo ra - chúng ra sẽ sử dụng các phương thức như là .then và .catch. 2 cái này đều nhận callback function - <b>resolve thì chạy vào then còn reject thì chạy vào catch</b></caption>
+    <h2>Promise cần 2 bước</h2>
+    <h3>1. Tạo mới 1 new Promise()</h3>
+    <h3>2. Executor</h3>
+    <h4>Trong Executor luôn phải có 1 trong 2 resolve hoặc reject -  nếu không sẽ gây ra hiện tượng lãng phí bộ nhớ (memories leak)</h4>
+
+<a href="https://www.youtube.com/watch?v=_4F8ihblZFU&ab_channel=F8Official
+    ">tham khảo tại đây</a>
+    <script>
+        //tạo mới và truyền hàm
+        var promise = new Promise(
+            //Executor(function) truyền 2 cái resolve và reject
+            function(resolve, reject){
+                //logic
+                //giải quyết: resolve()
+                //từ chối: reject()
+        })
+        //nó sẽ trả về 3 phương thức thường thấy đó là: then, catch, finally
+        //bên trong chúng là function để callback
+        promise
+        .then(function(){
+            //khi nào callback này được gọi thì resolve được gọi
+        })
+        .catch(function(){
+            //khi nào callback này được gọi thì reject được gọi
+        })
+        .finally(function(){
+            //khi 1 trong 2 resolve hoặc reject được gọi thì finally cung được gọi
+        })
+
+    </script>
+</body>
+</html>

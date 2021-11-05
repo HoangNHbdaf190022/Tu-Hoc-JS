@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class inheritance</title>
+</head>
+<body>
+    <h1>Class inheritance</h1>
+
+    <script>
+
+        class Animal{
+            constructor(name){
+                this.name = name;
+                this.speed = 0;
+            }
+            run(speed){
+                this.speed = speed;
+                console.log(`${this.name} is running with speed ${this.speed} km/h`)
+            }
+        }
+        var dongVat = new Animal()
+        
+        // Thừa kế từ lớp Animal
+        class Rabbit extends Animal{
+            lanTron(){
+                console.log(`${this.name} is hidding!`)
+            }
+        }
+        let rabbit = new Rabbit('Huy')
+        rabbit.run(10)
+        rabbit.lanTron()
+
+
+
+    </script>
+</body>
+</html>

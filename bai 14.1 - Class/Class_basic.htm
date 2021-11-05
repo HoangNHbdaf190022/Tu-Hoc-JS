@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class bassic</title>
+  </head>
+  <body>
+    <h1>Consloe.table & Class basic</h1>
+
+    <script>
+      
+      var car = [
+       car1 = { name: "Audi", model: "A4" },
+       car2 = { name: "Volvo", model: "XC90" },
+       car3 = { name: "Ford", model: "Fusion" }
+      ]
+      console.log('--Example 1--')
+      //============= ví dụ 1 dùng table ===========//
+      let a = car.forEach((value, index)=>{
+            console.table({Ten : `${value.name}`, Loai : `${value.model}`})
+      })
+      console.log('--Example 2--')
+      //============ ví dụ 2 dùng log ============//
+      console.log(car)
+
+      console.log('--Example 3--')
+      //============ ví dụ 3 dùng table full value ====//
+      console.table([car1, car2, car3]);
+
+
+      console.log('--Class basic--')
+      //============ class basic ============//
+      class Animal{
+        constructor(name, quantity){
+          this.name = name;
+          this.quantity = quantity;
+        }
+        display(){
+          console.log(`Tên: ${this.name}, Số lượng: ${this.quantity}`)
+          // console.table({Ten : `${this.name}`, so_luong : `${this.quantity}`})
+          // console.table([name, quantity], [this.name, this.quantity])
+        }
+      }
+      let abc = new Animal('Chó Huy', 10)
+      abc.display();
+      // console.table(abc)
+
+      
+    </script>
+  </body>
+</html>
