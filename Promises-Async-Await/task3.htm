@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function SyncPromise(resolver) {
+    if (typeof resolver !== "function") throw new Error('Khong phai function!');
+    this.status = "Pending";
+    this.value = undefined;
+    this.resolved = false;
+    try {
+        resolver(
+            (v) => {
+                if (!this.resolved) {
+                    this.status = "Resolved";
+                    this.value = v;
+                    this.resolved = true;
+                }
+            },
+            (v) => {
+                if (!this.resolved) {
+                    this.status = "Rejected";
+                    this.value = v;
+                    this.resolved = true;
+                }
+            }
+        );
+    } catch (e) {
+        if (!this.resolved) {
+            this.status = "Rejected";
+            this.value = e;
+            this.resolved = true;
+        }
+    }
+}
+SyncPromise.prototype.then = function (onResolved) {
+    if (this.status === "Pending") throw new Error();
+    else if (this.status === "Resolved")
+        return new SyncPromise((resolve, reject) =>
+            resolve(onResolved(this.value))
+        );
+    else {
+        this.resolved = false;
+        return this;
+    }
+};
+SyncPromise.prototype.catch = function (onRejected) {
+    if (this.status === "Pending") throw new Error();
+    else if (this.status === "Rejected")
+        return new SyncPromise((resolve, reject) =>
+            resolve(onRejected(this.value))
+        );
+    else {
+        this.resolved = false;
+        return this;
+    }
+};
+SyncPromise.prototype.finally = function (onFinally) {
+    return onFinally({ status: this.status, value: this.value });
+};
+    </script>
+</body>
+</html>

@@ -15,20 +15,21 @@
     <script>
       function sayJoke(apiUrl,jokeId) {
         return fetch(apiUrl)                  //trả về apiUrl bằng fetch
-        .then((response) => response.json())  // promise json
+        .then((response) => response.json())  // trả về định dạng json
         .then((json) => {                     //vòng lặp
             for(let joke of json.jokes){      //cho biến joke chạy qua các jokes để lọc id
-              if(joke.id === jokeId){         //id phải tuyệt đối bằng jokeId
+              if(joke.id === jokeId){         //id phải tuyệt đối bằng jokeId để truy cập được thông qua API đơn giản của 2 hàm saySetup và sayPunchLine
                   return{
                     saySetup: () => joke.saySetup,
                     sayPunchLine: () => joke.sayPunchLine,
                   }
               }
             }
-            throw new Error(`No jokes found id: ${jokeId}`) //không có id nào trùng thì báo không tìm thấy id
+            throw new Error(`No jokes found id: ${jokeId}`)     //không có id nào trùng thì báo không tìm thấy id
         })
-        .catch((error) => new Error(`No jokes at url: ${url}`))
+        .catch((error) => new Error(`No jokes at url: ${url}`)) //lấy jokes từ 1 apiUrl khác, nếu không có thì bắt lỗi theo kiểu promise
       }
+
     </script>
   </body>
 </html>

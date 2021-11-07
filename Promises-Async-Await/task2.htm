@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchronous Promise</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .con{max-width: 40%;}
+    code {background-color: gainsboro;}
+    pre{background-color: rgb(220, 224, 192);}
+    a{color: red; text-decoration: none}
+</style>
+<body>
+    <div class="con">
+        <h2>Synchronous Promise</h2>
+    <p>
+        The Promise object by its very nature is asynchronous. Let's flip that on its head! <br>
+        Create a <code>SyncPromise</code> object. This will be similar to a Promise, but with a couple differences. <br>
+        <ol>
+            <li>It will be synchronous only.</li>
+            <li>It will have a <code>finally()</code> method to allow observation of the current status/value.</li>
+        </ol>
+        <strong>Constructor</strong> <br>
+        The contructor should take a resolver function as an argument.
+    </p>
+    <pre>const promise = new SyncPromise((resolve, reject) => {
+        if (Date.now() % 2 === 1) {
+          reject('odd');
+        }
+        resolve('even');
+      });</pre>
+
+      <p>Initially the SyncPromise should have the status of <code>'Pending'</code> and the value of <code>undefined</code>. Calling <code>resolve(value)</code> will update the value and set the status to <code>'Resolved'</code>. Calling <code>reject(value)</code> will update the value and set the status to <code>'Rejected'</code>. If an error is thrown it will be treated as calling <code>reject(error)</code>. Only the first call to <code>resolve</code> or <code>reject</code> will update the value. Subsequent calls to <code>resolve</code> or <code>reject</code> have no affect on the status or value.</p>
+      <p>Nhiều quá, gõ 5p chán luôn - thông tin lấy <a href="https://www.codewars.com/kata/597a095b43cd2c367c00006b">tại đây</a></p>
+      <h3>Tạm dịch</h3>
+      <p>Đối tượng Promise về bản chất nó đã là bất đồng bộ rồi, cái này chắc chắn phải nhớ</p>
+      <p>Tạo 1 đối tượng SyncPromise, nó na ná như một Promise nhưng có đôi chỗ khác biệt</p>
+      <ol>
+          <li>Nó sẽ chỉ đồng bộ</li>
+          <li>Nó phải có 1 phương thức finally() để ta có thể quan sát được <b>status</b> và <b>value</b> hiện tại</li>
+      </ol>
+      <p>Còn lại tự dịch ... <i class="fas fa-smile" style="color: rgb(250, 213, 1)"></i></p>
+    </div>
+
+    <script>
+
+    function SyncPromise(resolver) {
+        //luon phai check xem no co phai function hay khong
+    if (typeof resolver !== 'function') {
+        throw Error('Not a function!');
+    }
+    this.status = Status.Pending;
+    this.value = undefined;
+    this.chayRoi = false;
+    try {
+        resolver(
+            // resolve
+            (value) => {
+                if (!this.chayRoi) {
+                    this.chayRoi = true;
+                    this.value = value;
+                    this.status = Status.Resolved;
+                }
+            },
+            // reject 
+            (value) => {
+                if (!this.chayRoi) {
+                    this.chayRoi = true;
+                    this.value = value;
+                    this.status = Status.Rejected;
+                }
+            },
+            );
+        } catch (e) {
+            if (!this.chayRoi) {
+                this.chayRoi = true;
+                this.value = e;
+                this.status = Status.Rejected;
+            }
+        }
+    }
+
+SyncPromise.prototype.then = function(onResolved) {
+    if (this.status === Status.Pending) {
+        throw Error();
+    }
+    
+    if (this.status === Status.Rejected) {
+        return this;
+    }
+    
+    try {
+        const newValue = onResolved(this.value);
+        return new SyncPromise(r => r(newValue));
+    } catch (e) {
+        return new SyncPromise((_, r) => r(e));
+    }
+}
+
+SyncPromise.prototype.catch = function(onRejected) {
+    if (this.status === Status.Pending) {
+        throw Error();
+    }
+
+    if (this.status === Status.Resolved) {
+        return this;
+    }
+
+    try {
+        const newValue = onRejected(this.value);
+        return new SyncPromise(r => r(newValue));
+    } catch (e) {
+        return new SyncPromise((_, r) => r(e));
+    }
+}
+
+SyncPromise.prototype.finally = function(onFinally) {
+    return onFinally({
+        status: this.status,
+        value: this.value,
+    });
+}
+
+const Status = {
+    Pending: 'Pending',
+    Resolved: 'Resolved',
+    Rejected: 'Rejected',
+}
+    </script>
+</body>
+</html>
